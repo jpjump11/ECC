@@ -38,4 +38,4 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py promote 
 3. それ以外の場合、以下の条件を満たすクロスプロジェクト候補を検出:
    - 少なくとも2つのプロジェクトに存在
    - 信頼度閾値を満たす
-4. プロモートされたインスティンクトを`~/.claude/homunculus/instincts/personal/`に`scope: global`で書き込み
+4. プロモートされたインスティンクトを`~/.local/share/ecc-homunculus/instincts/personal/`に`scope: global`で書き込み

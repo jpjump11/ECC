@@ -53,12 +53,12 @@ head -n 50 large-file.txt
 **解決策：**
 ```bash
 # 観測が記録されているか確認
-ls ~/.claude/homunculus/projects/*/observations.jsonl
+ls ~/.local/share/ecc-homunculus/projects/*/observations.jsonl
 
 # 現在のプロジェクトのハッシュIDを検索
 python3 - <<'PY'
 import json, os
-registry_path = os.path.expanduser("~/.claude/homunculus/projects.json")
+registry_path = os.path.expanduser("~/.local/share/ecc-homunculus/projects.json")
 with open(registry_path) as f:
     registry = json.load(f)
 for project_id, meta in registry.items():
@@ -66,15 +66,15 @@ for project_id, meta in registry.items():
         print(project_id)
         break
 else:
-    raise SystemExit("Project hash not found in ~/.claude/homunculus/projects.json")
+    raise SystemExit("Project hash not found in ~/.local/share/ecc-homunculus/projects.json")
 PY
 
 # そのプロジェクトの最近の観測を表示
-tail -20 ~/.claude/homunculus/projects/<project-hash>/observations.jsonl
+tail -20 ~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl
 
 # 破損した観測ファイルを再作成前にバックアップ
-mv ~/.claude/homunculus/projects/<project-hash>/observations.jsonl \
-  ~/.claude/homunculus/projects/<project-hash>/observations.jsonl.bak.$(date +%Y%m%d-%H%M%S)
+mv ~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl \
+  ~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl.bak.$(date +%Y%m%d-%H%M%S)
 
 # フックが有効か確認
 grep -r "observe" ~/.claude/settings.json
@@ -322,9 +322,9 @@ rm package-lock.json  # pnpm/yarn/bunを使用する場合
 **解決策：**
 ```bash
 # 大きな観測を削除せずアーカイブ
-archive_dir="$HOME/.claude/homunculus/archive/$(date +%Y%m%d)"
+archive_dir="$HOME/.local/share/ecc-homunculus/archive/$(date +%Y%m%d)"
 mkdir -p "$archive_dir"
-find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec sh -c '
+find ~/.local/share/ecc-homunculus/projects -name "observations.jsonl" -size +10M -exec sh -c '
   for file do
     base=$(basename "$(dirname "$file")")
     gzip -c "$file" > "'"$archive_dir"'/${base}-observations.jsonl.gz"
@@ -336,7 +336,7 @@ find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec s
 # ~/.claude/settings.jsonを編集
 
 # アクティブな観測ファイルを小さく保つ
-# 大きなアーカイブは ~/.claude/homunculus/archive/ に配置
+# 大きなアーカイブは ~/.local/share/ecc-homunculus/archive/ に配置
 ```
 
 ### 高CPU使用率
@@ -354,13 +354,13 @@ find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec s
 top -o cpu | grep claude
 
 # 継続学習を一時的に無効化
-touch ~/.claude/homunculus/disabled
+touch ~/.local/share/ecc-homunculus/disabled
 
 # Claude Codeを再起動
 # Cmd/Ctrl+Q で終了後、再起動
 
 # 観測ファイルのサイズを確認
-du -sh ~/.claude/homunculus/*/
+du -sh ~/.local/share/ecc-homunculus/*/
 ```
 
 ---
@@ -374,7 +374,7 @@ du -sh ~/.claude/homunculus/*/
 find ~/.claude/plugins -name "*.sh" -exec chmod +x {} \;
 
 # 観測ディレクトリのパーミッションを修正
-chmod -R u+rwX,go+rX ~/.claude/homunculus
+chmod -R u+rwX,go+rX ~/.local/share/ecc-homunculus
 ```
 
 ### "MODULE_NOT_FOUND"

@@ -31,8 +31,8 @@ python3 "$ECC_ROOT/skills/continuous-learning-v2/scripts/instinct-cli.py" status
 ## Yapılacaklar
 
 1. Mevcut proje bağlamını tespit et (git remote/path hash)
-2. `~/.claude/homunculus/projects/<project-id>/instincts/` konumundan proje içgüdülerini oku
-3. `~/.claude/homunculus/instincts/` konumundan global içgüdüleri oku
+2. `~/.local/share/ecc-homunculus/projects/<project-id>/instincts/` konumundan proje içgüdülerini oku
+3. `~/.local/share/ecc-homunculus/instincts/` konumundan global içgüdüleri oku
 4. Öncelik kurallarıyla birleştir (ID çakışmasında proje global'i geçersiz kılar)
 5. Domain'e göre gruplandırılmış, güven çubukları ve gözlem istatistikleriyle göster
 

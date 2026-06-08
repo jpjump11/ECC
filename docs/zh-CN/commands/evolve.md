@@ -95,8 +95,8 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py evolve [
    * 智能体候选（更大、高置信度的簇）
 5. 在适用时显示升级候选（项目 -> 全局）
 6. 如果传入了 `--generate`，则将文件写入：
-   * 项目范围：`~/.claude/homunculus/projects/<project-id>/evolved/`
-   * 全局回退：`~/.claude/homunculus/evolved/`
+   * 项目范围：`~/.local/share/ecc-homunculus/projects/<project-id>/evolved/`
+   * 全局回退：`~/.local/share/ecc-homunculus/evolved/`
 
 ## 输出格式
 

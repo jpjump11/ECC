@@ -291,7 +291,7 @@ grep -rn "skills/" $TARGET/skills/
 * `laravel-tdd` 可能会引用 `laravel-patterns`
 * `quarkus-tdd` 可能会引用 `quarkus-patterns`
 * `springboot-tdd` 可能会引用 `springboot-patterns`
-* `continuous-learning-v2` 引用 `~/.claude/homunculus/` 目录
+* `continuous-learning-v2` 引用 `~/.local/share/ecc-homunculus/` 目录
 * `python-testing` 可能会引用 `python-patterns`
 * `golang-testing` 可能会引用 `golang-patterns`
 * `crosspost` 引用 `content-engine` 和 `x-api`
@@ -397,4 +397,4 @@ rm -rf /tmp/everything-claude-code
 ### "项目级别安装后出现路径引用错误"
 
 * 有些技能假设 `~/.claude/` 路径。运行步骤 4 验证来查找并修复这些问题。
-* 对于 `continuous-learning-v2`，`~/.claude/homunculus/` 目录始终是用户级别的 — 这是预期的，不是错误。
+* 对于 `continuous-learning-v2`，`~/.local/share/ecc-homunculus/` 目录始终是用户级别的 — 这是预期的，不是错误。

@@ -30,7 +30,7 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py projects
 
 ## What to Do
 
-1. Read `~/.claude/homunculus/projects.json`
+1. Read `~/.local/share/ecc-homunculus/projects.json`
 2. For each project, display:
    - Project name, id, root, remote
    - Personal and inherited instinct counts

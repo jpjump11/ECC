@@ -30,7 +30,7 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py projects
 
 ## 操作步骤
 
-1. 读取 `~/.claude/homunculus/projects.json`
+1. 读取 `~/.local/share/ecc-homunculus/projects.json`
 2. 对于每个项目，显示：
    * 项目名称、ID、根目录、远程地址
    * 个人和继承的本能计数

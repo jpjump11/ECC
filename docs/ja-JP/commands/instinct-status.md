@@ -32,8 +32,8 @@ python3 "$ECC_ROOT/skills/continuous-learning-v2/scripts/instinct-cli.py" status
 
 ## 実行内容
 
-1. `~/.claude/homunculus/instincts/personal/` からすべてのインスティンクトファイルを読み込む
-2. `~/.claude/homunculus/instincts/inherited/` から継承されたインスティンクトを読み込む
+1. `~/.local/share/ecc-homunculus/instincts/personal/` からすべてのインスティンクトファイルを読み込む
+2. `~/.local/share/ecc-homunculus/instincts/inherited/` から継承されたインスティンクトを読み込む
 3. ドメインごとにグループ化し、信頼度バーとともに表示
 
 ## 出力形式

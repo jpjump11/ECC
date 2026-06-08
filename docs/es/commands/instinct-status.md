@@ -31,8 +31,8 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py status
 ## Qué Hacer
 
 1. Detectar el contexto actual del proyecto (hash de remote/ruta de git)
-2. Leer instintos del proyecto desde `~/.claude/homunculus/projects/<project-id>/instincts/`
-3. Leer instintos globales desde `~/.claude/homunculus/instincts/`
+2. Leer instintos del proyecto desde `~/.local/share/ecc-homunculus/projects/<project-id>/instincts/`
+3. Leer instintos globales desde `~/.local/share/ecc-homunculus/instincts/`
 4. Fusionar con reglas de precedencia (el proyecto sobreescribe global cuando hay colisión de IDs)
 5. Mostrar agrupados por dominio con barras de confianza y estadísticas de observación
 

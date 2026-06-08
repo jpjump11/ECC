@@ -18,8 +18,8 @@ model: haiku
 
 从**项目作用域**的观察文件中读取观察记录：
 
-* 项目：`~/.claude/homunculus/projects/<project-hash>/observations.jsonl`
-* 全局后备：`~/.claude/homunculus/observations.jsonl`
+* 项目：`~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl`
+* 全局后备：`~/.local/share/ecc-homunculus/observations.jsonl`
 
 ```jsonl
 {"timestamp":"2025-01-22T10:30:00Z","event":"tool_start","session":"abc123","tool":"Edit","input":"...","project_id":"a1b2c3d4e5f6","project_name":"my-react-app"}
@@ -76,8 +76,8 @@ model: haiku
 
 在**项目作用域**的本能目录中创建/更新本能：
 
-* 项目：`~/.claude/homunculus/projects/<project-hash>/instincts/personal/`
-* 全局：`~/.claude/homunculus/instincts/personal/`（用于通用模式）
+* 项目：`~/.local/share/ecc-homunculus/projects/<project-hash>/instincts/personal/`
+* 全局：`~/.local/share/ecc-homunculus/instincts/personal/`（用于通用模式）
 
 ### 项目作用域本能（默认）
 

@@ -53,12 +53,12 @@ head -n 50 large-file.txt
 **Çözümler:**
 ```bash
 # Gözlemlerin kaydedilip kaydedilmediğini kontrol et
-ls ~/.claude/homunculus/projects/*/observations.jsonl
+ls ~/.local/share/ecc-homunculus/projects/*/observations.jsonl
 
 # Mevcut projenin hash id'sini bul
 python3 - <<'PY'
 import json, os
-registry_path = os.path.expanduser("~/.claude/homunculus/projects.json")
+registry_path = os.path.expanduser("~/.local/share/ecc-homunculus/projects.json")
 with open(registry_path) as f:
     registry = json.load(f)
 for project_id, meta in registry.items():
@@ -66,15 +66,15 @@ for project_id, meta in registry.items():
         print(project_id)
         break
 else:
-    raise SystemExit("Project hash not found in ~/.claude/homunculus/projects.json")
+    raise SystemExit("Project hash not found in ~/.local/share/ecc-homunculus/projects.json")
 PY
 
 # O proje için son gözlemleri görüntüle
-tail -20 ~/.claude/homunculus/projects/<project-hash>/observations.jsonl
+tail -20 ~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl
 
 # Bozuk bir observations dosyasını yeniden oluşturmadan önce yedekle
-mv ~/.claude/homunculus/projects/<project-hash>/observations.jsonl \
-  ~/.claude/homunculus/projects/<project-hash>/observations.jsonl.bak.$(date +%Y%m%d-%H%M%S)
+mv ~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl \
+  ~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl.bak.$(date +%Y%m%d-%H%M%S)
 
 # Hook'ların etkin olduğunu doğrula
 grep -r "observe" ~/.claude/settings.json
@@ -311,9 +311,9 @@ rm package-lock.json  # pnpm/yarn/bun kullanıyorsan
 **Çözümler:**
 ```bash
 # Büyük gözlemleri silmek yerine arşivle
-archive_dir="$HOME/.claude/homunculus/archive/$(date +%Y%m%d)"
+archive_dir="$HOME/.local/share/ecc-homunculus/archive/$(date +%Y%m%d)"
 mkdir -p "$archive_dir"
-find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec sh -c '
+find ~/.local/share/ecc-homunculus/projects -name "observations.jsonl" -size +10M -exec sh -c '
   for file do
     base=$(basename "$(dirname "$file")")
     gzip -c "$file" > "'"$archive_dir"'/${base}-observations.jsonl.gz"
@@ -325,7 +325,7 @@ find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec s
 # ~/.claude/settings.json'u düzenle
 
 # Aktif gözlem dosyalarını küçük tut
-# Büyük arşivler ~/.claude/homunculus/archive/ altında olmalı
+# Büyük arşivler ~/.local/share/ecc-homunculus/archive/ altında olmalı
 ```
 
 ### Yüksek CPU Kullanımı
@@ -343,13 +343,13 @@ find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec s
 top -o cpu | grep claude
 
 # Sürekli öğrenmeyi geçici olarak devre dışı bırak
-touch ~/.claude/homunculus/disabled
+touch ~/.local/share/ecc-homunculus/disabled
 
 # Claude Code'u yeniden başlat
 # Cmd/Ctrl+Q ardından yeniden aç
 
 # Gözlem dosyası boyutunu kontrol et
-du -sh ~/.claude/homunculus/*/
+du -sh ~/.local/share/ecc-homunculus/*/
 ```
 
 ---
@@ -363,7 +363,7 @@ du -sh ~/.claude/homunculus/*/
 find ~/.claude/plugins -name "*.sh" -exec chmod +x {} \;
 
 # Gözlem dizini izinlerini düzelt
-chmod -R u+rwX,go+rX ~/.claude/homunculus
+chmod -R u+rwX,go+rX ~/.local/share/ecc-homunculus
 ```
 
 ### "MODULE_NOT_FOUND"

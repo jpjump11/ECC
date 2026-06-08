@@ -281,7 +281,7 @@ Some skills reference others. Verify these dependencies:
 - `laravel-tdd` may reference `laravel-patterns`
 - `quarkus-tdd` may reference `quarkus-patterns`
 - `springboot-tdd` may reference `springboot-patterns`
-- `continuous-learning-v2` references `~/.claude/homunculus/` directory
+- `continuous-learning-v2` references `~/.local/share/ecc-homunculus/` directory
 - `python-testing` may reference `python-patterns`
 - `golang-testing` may reference `golang-patterns`
 - `crosspost` references `content-engine` and `x-api`
@@ -381,4 +381,4 @@ Then print a summary report:
 
 ### "Path reference errors after project-level install"
 - Some skills assume `~/.claude/` paths. Run Step 4 verification to find and fix these.
-- For `continuous-learning-v2`, the `~/.claude/homunculus/` directory is always user-level — this is expected and not an error.
+- For `continuous-learning-v2`, the `~/.local/share/ecc-homunculus/` directory is always user-level — this is expected and not an error.

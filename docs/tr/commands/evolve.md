@@ -85,8 +85,8 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py evolve [
    - Agent adayları (daha büyük, yüksek güvenli kümeler)
 5. Uygulanabilir durumlarda terfi adaylarını göster (proje -> global)
 6. `--generate` geçilirse, dosyaları şuraya yaz:
-   - Proje kapsamı: `~/.claude/homunculus/projects/<project-id>/evolved/`
-   - Global fallback: `~/.claude/homunculus/evolved/`
+   - Proje kapsamı: `~/.local/share/ecc-homunculus/projects/<project-id>/evolved/`
+   - Global fallback: `~/.local/share/ecc-homunculus/evolved/`
 
 ## Çıktı Formatı
 

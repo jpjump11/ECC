@@ -30,7 +30,7 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py projects
 
 ## 操作手順
 
-1. `~/.claude/homunculus/projects.json` を読み取る
+1. `~/.local/share/ecc-homunculus/projects.json` を読み取る
 2. 各プロジェクトについて以下を表示する：
    * プロジェクト名、ID、ルートディレクトリ、リモートアドレス
    * 個人および継承された本能カウント

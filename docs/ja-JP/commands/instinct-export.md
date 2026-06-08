@@ -22,7 +22,7 @@ command: /instinct-export
 
 ## 実行内容
 
-1. `~/.claude/homunculus/instincts/personal/` からインスティンクトを読み込む
+1. `~/.local/share/ecc-homunculus/instincts/personal/` からインスティンクトを読み込む
 2. フラグに基づいてフィルタリング
 3. 機密情報を除外:
    - セッションIDを削除

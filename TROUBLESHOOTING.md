@@ -53,12 +53,12 @@ head -n 50 large-file.txt
 **Solutions:**
 ```bash
 # Check if observations are being recorded
-ls ~/.claude/homunculus/projects/*/observations.jsonl
+ls ~/.local/share/ecc-homunculus/projects/*/observations.jsonl
 
 # Find the current project's hash id
 python3 - <<'PY'
 import json, os
-registry_path = os.path.expanduser("~/.claude/homunculus/projects.json")
+registry_path = os.path.expanduser("~/.local/share/ecc-homunculus/projects.json")
 with open(registry_path) as f:
     registry = json.load(f)
 for project_id, meta in registry.items():
@@ -66,15 +66,15 @@ for project_id, meta in registry.items():
         print(project_id)
         break
 else:
-    raise SystemExit("Project hash not found in ~/.claude/homunculus/projects.json")
+    raise SystemExit("Project hash not found in ~/.local/share/ecc-homunculus/projects.json")
 PY
 
 # View recent observations for that project
-tail -20 ~/.claude/homunculus/projects/<project-hash>/observations.jsonl
+tail -20 ~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl
 
 # Back up a corrupted observations file before recreating it
-mv ~/.claude/homunculus/projects/<project-hash>/observations.jsonl \
-  ~/.claude/homunculus/projects/<project-hash>/observations.jsonl.bak.$(date +%Y%m%d-%H%M%S)
+mv ~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl \
+  ~/.local/share/ecc-homunculus/projects/<project-hash>/observations.jsonl.bak.$(date +%Y%m%d-%H%M%S)
 
 # Verify hooks are enabled
 grep -r "observe" ~/.claude/settings.json
@@ -321,9 +321,9 @@ rm package-lock.json  # If using pnpm/yarn/bun
 **Solutions:**
 ```bash
 # Archive large observations instead of deleting them
-archive_dir="$HOME/.claude/homunculus/archive/$(date +%Y%m%d)"
+archive_dir="$HOME/.local/share/ecc-homunculus/archive/$(date +%Y%m%d)"
 mkdir -p "$archive_dir"
-find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec sh -c '
+find ~/.local/share/ecc-homunculus/projects -name "observations.jsonl" -size +10M -exec sh -c '
   for file do
     base=$(basename "$(dirname "$file")")
     gzip -c "$file" > "'"$archive_dir"'/${base}-observations.jsonl.gz"
@@ -335,7 +335,7 @@ find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec s
 # Edit ~/.claude/settings.json
 
 # Keep active observation files small
-# Large archives should live under ~/.claude/homunculus/archive/
+# Large archives should live under ~/.local/share/ecc-homunculus/archive/
 ```
 
 ### High CPU Usage
@@ -353,13 +353,13 @@ find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec s
 top -o cpu | grep claude
 
 # Disable continuous learning temporarily
-touch ~/.claude/homunculus/disabled
+touch ~/.local/share/ecc-homunculus/disabled
 
 # Restart Claude Code
 # Cmd/Ctrl+Q then reopen
 
 # Check observation file size
-du -sh ~/.claude/homunculus/*/
+du -sh ~/.local/share/ecc-homunculus/*/
 ```
 
 ---
@@ -373,7 +373,7 @@ du -sh ~/.claude/homunculus/*/
 find ~/.claude/plugins -name "*.sh" -exec chmod +x {} \;
 
 # Fix observation directory permissions
-chmod -R u+rwX,go+rX ~/.claude/homunculus
+chmod -R u+rwX,go+rX ~/.local/share/ecc-homunculus
 ```
 
 ### "MODULE_NOT_FOUND"
