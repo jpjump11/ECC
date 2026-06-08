@@ -24,7 +24,30 @@ Analyze your repository's git history to extract coding patterns and generate SK
 3. **Generates SKILL.md** - Creates valid Claude Code skill files
 4. **Optionally Creates Instincts** - For the continuous-learning-v2 system
 
+## Pipeline Position
+
+`/skill-create` is **Stage 2** of the skill lifecycle pipeline
+(scout -> create -> validate). The canonical chain is documented once in
+`docs/SKILL-DEVELOPMENT-GUIDE.md` (Skill Lifecycle Pipeline). Do not run this
+command in isolation: search first (Stage 1) and validate after (Stage 3).
+
 ## Analysis Steps
+
+### Step 0: Search First (skill-scout)
+
+Before generating anything, confirm a suitable skill does not already exist.
+Invoke `skill-scout` (or, at minimum, search local sources):
+
+```bash
+# Quick local check for an existing match (replace KEYWORD with the skill's domain)
+find ~/.claude/skills -maxdepth 2 -name SKILL.md 2>/dev/null | grep -iE "KEYWORD"
+grep -RilE "KEYWORD" ~/.claude/skills ~/.claude/plugins/marketplaces 2>/dev/null
+```
+
+- If a close match exists, recommend **use / fork / extend** instead of creating
+  a duplicate, and stop here.
+- Only proceed to Step 1 when no close match is found, or the user explicitly
+  asks to create fresh.
 
 ### Step 1: Gather Git Data
 
@@ -102,6 +125,27 @@ Prefix commits with: feat:, fix:, chore:, docs:, test:, refactor:
 - {percentage}% follow conventional commit format
 ```
 
+### Step 5: Validate the Generated Skill (close the loop)
+
+A generated `SKILL.md` is a draft until it passes Stage 3. Do not consider the
+command complete after writing the file:
+
+1. **Self-check against the quality bar** before handing off. The skill must be:
+   - **Actionable** - concrete commands/steps, not vague advice.
+   - **Scoped** - `name` + `description` + body aligned; not too broad/narrow.
+   - **Unique** - not already covered by another skill, a rule, or CLAUDE.md
+     (Step 0 should have caught duplicates; re-confirm now).
+   - **Current** - referenced tools/flags/APIs work in today's environment.
+2. **Audit with `skill-stocktake`** (quick scan) targeting the new skill. A
+   freshly generated skill should earn a **Keep** verdict; an
+   `Improve` / `Merge` / `Retire` verdict means iterate before shipping.
+3. **Optionally measure with `skill-comply`** when the generated skill defines a
+   behavioral sequence (a workflow), to confirm an agent follows it even when the
+   prompt does not explicitly reinforce it. Skip for pure reference/pattern dumps.
+
+See `docs/SKILL-DEVELOPMENT-GUIDE.md` (Skill Lifecycle Pipeline) for the full
+chain.
+
 ## Example Output
 
 Running `/skill-create` on a TypeScript project might produce:
@@ -164,6 +208,15 @@ For advanced features (10k+ commits, team sharing, auto-PRs), use the [Skill Cre
 - Receives PR with generated skills
 
 ## Related Commands
+
+Skill lifecycle pipeline (scout -> create -> validate), documented in
+`docs/SKILL-DEVELOPMENT-GUIDE.md`:
+
+- `skill-scout` - Stage 1: search before creating (the Step 0 precondition).
+- `skill-stocktake` - Stage 3: audit the generated skill for quality/duplicates.
+- `skill-comply` - Stage 3 (optional): measure whether the new skill is followed.
+
+continuous-learning-v2 integration (when run with `--instincts`):
 
 - `/instinct-import` - Import generated instincts
 - `/instinct-status` - View learned instincts

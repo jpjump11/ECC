@@ -5,6 +5,7 @@ A comprehensive guide to creating effective skills for Everything Claude Code (E
 ## Table of Contents
 
 - [What Are Skills?](#what-are-skills)
+- [Skill Lifecycle Pipeline](#skill-lifecycle-pipeline)
 - [Skill Architecture](#skill-architecture)
 - [Creating Your First Skill](#creating-your-first-skill)
 - [Skill Categories](#skill-categories)
@@ -45,6 +46,67 @@ Skills activate when:
 | **Command** | User action | User-invoked (`/command`) |
 | **Hook** | Automation | Event-triggered |
 | **Rule** | Always-on guidelines | Always active |
+
+---
+
+## Skill Lifecycle Pipeline
+
+Creating a skill is not a single step. ECC ships four tools that form one
+search-build-validate pipeline. This section is the **single source of truth**
+for the chain; `skill-scout`, `/skill-create`, `skill-stocktake`, and
+`skill-comply` each link back here instead of re-describing it.
+
+```text
+  ┌──────────────┐     ┌──────────────┐     ┌─────────────────────────────┐
+  │  1. SCOUT    │ --> │  2. CREATE   │ --> │  3. VALIDATE                │
+  │ skill-scout  │     │ /skill-create│     │ skill-stocktake + comply    │
+  └──────────────┘     └──────────────┘     └─────────────────────────────┘
+   search first         build/generate        audit quality + measure
+   (avoid dupes)        (or hand-author)       it is actually followed
+```
+
+### Stage 1 — Scout (search before you build)
+
+Run `skill-scout` first. It searches local, marketplace, GitHub, and web
+sources so you reuse or fork an existing skill instead of creating a duplicate.
+Only advance to Stage 2 when scout finds no close match **or** the user
+explicitly chooses "Create fresh".
+
+### Stage 2 — Create (generate or hand-author)
+
+Two entry points feed the same output (a `SKILL.md`):
+
+- **`/skill-create`** — generates a `SKILL.md` from local git history (commit
+  conventions, file co-changes, workflows, test patterns). Best when the skill
+  should encode how *this* repo already works.
+- **Hand-authoring** — follow [Creating Your First Skill](#creating-your-first-skill)
+  when the skill encodes domain knowledge that is not derivable from git.
+
+Either way, write to the quality bar in Stage 3 so the new skill passes the
+audit on the first try.
+
+### Stage 3 — Validate (audit + compliance)
+
+A new skill is not "done" when the file is written. Close the loop:
+
+1. **`skill-stocktake`** (quick scan) — audits the new skill against the quality
+   checklist: actionability, scope fit, uniqueness (no overlap with an existing
+   skill / CLAUDE.md), and currency. A fresh skill should earn a **Keep**
+   verdict; an `Improve`/`Merge`/`Retire` verdict means iterate before shipping.
+2. **`skill-comply`** (optional) — measures whether an agent actually follows
+   the skill even when the prompt does not explicitly reinforce it. Run it when
+   the skill defines a behavioral sequence (a workflow or rule), not for pure
+   reference skills.
+
+### Quality bar (applies at every stage)
+
+A skill that survives the pipeline is:
+
+- **Actionable** — concrete commands, code, or numbered steps you can act on now.
+- **Scoped** — name, trigger (`description`), and body are aligned; not too broad
+  or too narrow.
+- **Unique** — value is not already covered by another skill, a rule, or CLAUDE.md.
+- **Current** — every referenced tool, flag, or API works in today's environment.
 
 ---
 
