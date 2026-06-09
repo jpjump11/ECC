@@ -8,6 +8,18 @@ origin: ECC
 
 Slash command (`/skill-stocktake`) that audits all Claude skills and commands using a quality checklist + AI holistic judgment. Supports two modes: Quick Scan for recently changed skills, and Full Stocktake for a complete review.
 
+## Pipeline Position
+
+This skill is **Stage 3** (validation) of the skill lifecycle pipeline
+(scout -> create -> validate), documented once in
+`docs/SKILL-DEVELOPMENT-GUIDE.md` (Skill Lifecycle Pipeline). Beyond periodic
+portfolio audits, it is the **post-create gate**: after `skill-scout` (Stage 1)
+and `/skill-create` (Stage 2) produce a new skill, run a Quick Scan so the new
+skill is evaluated against the same checklist as everything else. A freshly
+created skill should earn a **Keep** verdict; any other verdict means iterate
+before shipping. Pair with `skill-comply` when the new skill defines a
+behavioral sequence.
+
 ## Scope
 
 The command targets the following paths **relative to the directory where it is invoked**:
@@ -192,3 +204,12 @@ Obtain via Bash: `date -u +%Y-%m-%dT%H:%M:%SZ`. Never use a date-only approximat
 - Evaluation is blind: the same checklist applies to all skills regardless of origin (ECC, self-authored, auto-extracted)
 - Archive / delete operations always require explicit user confirmation
 - No verdict branching by skill origin
+
+## Related
+
+Skill lifecycle pipeline (scout -> create -> validate); see
+`docs/SKILL-DEVELOPMENT-GUIDE.md` (Skill Lifecycle Pipeline).
+
+- `skill-scout` - Stage 1: search before creating a new skill.
+- `/skill-create` - Stage 2: generate a `SKILL.md` from git history.
+- `skill-comply` - Stage 3 (optional): measure whether a skill is actually followed.

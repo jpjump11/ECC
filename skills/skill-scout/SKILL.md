@@ -99,10 +99,26 @@ Give the user a short table:
 | --- | --- |
 | Use existing | Invoke or install a matching skill as-is. |
 | Fork or extend | Copy the closest skill and modify it. |
-| Create fresh | Build a new skill after confirming no close match exists. |
+| Create fresh | Hand off to `/skill-create` (or hand-author) after confirming no close match exists. |
 
 Only create a new skill after the user chooses that path or after the search
 finds no close match.
+
+### Step 7 - Hand Off to Creation
+
+`skill-scout` is **Stage 1** of the skill lifecycle pipeline. When the user
+chooses "Create fresh", do not stop at a recommendation - continue the chain:
+
+- Invoke `/skill-create` to generate a `SKILL.md` from local git history, or
+  hand-author per `docs/SKILL-DEVELOPMENT-GUIDE.md` when the skill encodes
+  domain knowledge git cannot reveal.
+- Pass forward the intent you captured in Step 1 (task, trigger, domain,
+  keywords) so the new skill is scoped correctly.
+- After creation, the pipeline continues to validation (`skill-stocktake`,
+  then optionally `skill-comply`).
+
+The full chain is documented once in `docs/SKILL-DEVELOPMENT-GUIDE.md`
+(Skill Lifecycle Pipeline).
 
 ## Examples
 
@@ -135,6 +151,14 @@ release-note variant, or create a fresh skill.
 
 ## Related
 
+This skill is **Stage 1** of the skill lifecycle pipeline (scout -> create ->
+validate). See `docs/SKILL-DEVELOPMENT-GUIDE.md` (Skill Lifecycle Pipeline) for
+the canonical chain.
+
+- `/skill-create` - Stage 2: generate a `SKILL.md` from git history (the handoff
+  target when the user chooses "Create fresh").
+- `skill-stocktake` - Stage 3: audit the new skill for health, duplicates, and gaps.
+- `skill-comply` - Stage 3 (optional): measure whether the new skill is actually
+  followed.
 - `search-first` - General search-before-building workflow.
-- `skill-stocktake` - Audit installed skills for health, duplicates, and gaps.
 - `agent-sort` - Categorize and organize existing agents and skills.

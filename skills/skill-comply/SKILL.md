@@ -26,6 +26,11 @@ Measures whether coding agents actually follow skills, rules, or agent definitio
 - User runs `/skill-comply <path>`
 - User asks "is this rule actually being followed?"
 - After adding new rules/skills, to verify agent compliance
+- As the **optional Stage 3 check** in the skill lifecycle pipeline
+  (scout -> create -> validate): after `/skill-create` produces a workflow skill
+  and `skill-stocktake` confirms quality, run `skill-comply` to confirm an agent
+  actually follows it. Skip for pure reference/pattern skills with no behavioral
+  sequence. See `docs/SKILL-DEVELOPMENT-GUIDE.md` (Skill Lifecycle Pipeline).
 - Periodically as part of quality maintenance
 
 ## Usage
@@ -56,3 +61,12 @@ Reports are self-contained and include:
 ### Advanced (optional)
 
 For users familiar with hooks, reports also include hook promotion recommendations for steps with low compliance. This is informational — the main value is the compliance visibility itself.
+
+## Related
+
+Skill lifecycle pipeline (scout -> create -> validate); see
+`docs/SKILL-DEVELOPMENT-GUIDE.md` (Skill Lifecycle Pipeline).
+
+- `skill-scout` - Stage 1: search before creating a new skill.
+- `/skill-create` - Stage 2: generate a `SKILL.md` from git history.
+- `skill-stocktake` - Stage 3: audit skill quality (run before this compliance check).
