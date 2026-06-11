@@ -38,4 +38,4 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py promote 
 3. 否则，查找跨项目候选本能，这些本能：
    * 出现在至少 2 个项目中
    * 满足置信度阈值
-4. 将提升后的本能写入 `~/.claude/homunculus/instincts/personal/`，并设置 `scope: global`
+4. 将提升后的本能写入 `~/.local/share/ecc-homunculus/instincts/personal/`，并设置 `scope: global`

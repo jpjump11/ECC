@@ -38,8 +38,8 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py import <
 3. 检查与现有本能的重复项
 4. 合并或添加新本能
 5. 保存到继承的本能目录：
-   * 项目范围：`~/.claude/homunculus/projects/<project-id>/instincts/inherited/`
-   * 全局范围：`~/.claude/homunculus/instincts/inherited/`
+   * 项目范围：`~/.local/share/ecc-homunculus/projects/<project-id>/instincts/inherited/`
+   * 全局范围：`~/.local/share/ecc-homunculus/instincts/inherited/`
 
 ## 导入过程
 
@@ -111,7 +111,7 @@ PASS: 导入完成！
 更新：1 项本能
 跳过：3 项本能（已存在同等或更高置信度的版本）
 
-新本能已保存至：~/.claude/homunculus/instincts/inherited/
+新本能已保存至：~/.local/share/ecc-homunculus/instincts/inherited/
 
 运行 /instinct-status 以查看所有本能。
 ```

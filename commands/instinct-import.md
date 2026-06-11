@@ -38,8 +38,8 @@ Import instincts from local file paths or HTTP(S) URLs.
 3. Check for duplicates with existing instincts
 4. Merge or add new instincts
 5. Save to inherited instincts directory:
-   - Project scope: `~/.claude/homunculus/projects/<project-id>/instincts/inherited/`
-   - Global scope: `~/.claude/homunculus/instincts/inherited/`
+   - Project scope: `~/.local/share/ecc-homunculus/projects/<project-id>/instincts/inherited/`
+   - Global scope: `~/.local/share/ecc-homunculus/instincts/inherited/`
 
 ## Import Process
 
@@ -108,7 +108,7 @@ Added: 8 instincts
 Updated: 1 instinct
 Skipped: 3 instincts (equal/higher confidence already exists)
 
-New instincts saved to: ~/.claude/homunculus/instincts/inherited/
+New instincts saved to: ~/.local/share/ecc-homunculus/instincts/inherited/
 
 Run /instinct-status to see all instincts.
 ```

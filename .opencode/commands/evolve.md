@@ -32,5 +32,5 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py evolve $
 - Shows skill/command/agent candidates from trigger and domain clustering.
 - Shows project -> global promotion candidates.
 - With `--generate`, output path is:
-  - project context: `~/.claude/homunculus/projects/<project-id>/evolved/`
-  - global fallback: `~/.claude/homunculus/evolved/`
+  - project context: `~/.local/share/ecc-homunculus/projects/<project-id>/evolved/`
+  - global fallback: `~/.local/share/ecc-homunculus/evolved/`

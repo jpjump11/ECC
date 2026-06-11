@@ -38,8 +38,8 @@ Importar instintos desde rutas de archivos locales o URLs HTTP(S).
 3. Verificar duplicados con instintos existentes
 4. Fusionar o añadir nuevos instintos
 5. Guardar en el directorio de instintos heredados:
-   - Alcance de proyecto: `~/.claude/homunculus/projects/<project-id>/instincts/inherited/`
-   - Alcance global: `~/.claude/homunculus/instincts/inherited/`
+   - Alcance de proyecto: `~/.local/share/ecc-homunculus/projects/<project-id>/instincts/inherited/`
+   - Alcance global: `~/.local/share/ecc-homunculus/instincts/inherited/`
 
 ## Proceso de Importación
 
@@ -108,7 +108,7 @@ Añadidos: 8 instintos
 Actualizados: 1 instinto
 Omitidos: 3 instintos (ya existe igual/mayor confianza)
 
-Nuevos instintos guardados en: ~/.claude/homunculus/instincts/inherited/
+Nuevos instintos guardados en: ~/.local/share/ecc-homunculus/instincts/inherited/
 
 Ejecutar /instinct-status para ver todos los instintos.
 ```

@@ -38,4 +38,4 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py promote 
 3. Otherwise, find cross-project candidates that:
    - Appear in at least 2 projects
    - Meet confidence threshold
-4. Write promoted instincts to `~/.claude/homunculus/instincts/personal/` with `scope: global`
+4. Write promoted instincts to `~/.local/share/ecc-homunculus/instincts/personal/` with `scope: global`

@@ -29,8 +29,8 @@ python3 "$ECC_ROOT/skills/continuous-learning-v2/scripts/instinct-cli.py" status
 ## 操作步骤
 
 1. 检测当前项目上下文（git remote/路径哈希）
-2. 从 `~/.claude/homunculus/projects/<project-id>/instincts/` 读取项目本能
-3. 从 `~/.claude/homunculus/instincts/` 读取全局本能
+2. 从 `~/.local/share/ecc-homunculus/projects/<project-id>/instincts/` 读取项目本能
+3. 从 `~/.local/share/ecc-homunculus/instincts/` 读取全局本能
 4. 合并并应用优先级规则（当ID冲突时，项目本能覆盖全局本能）
 5. 按领域分组显示，包含置信度条和观察统计数据
 

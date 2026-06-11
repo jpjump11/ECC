@@ -40,7 +40,7 @@ python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py import <
 2. 形式を解析して検証
 3. 既存のインスティンクトとの重複をチェック
 4. 新しいインスティンクトをマージまたは追加
-5. `~/.claude/homunculus/instincts/inherited/` に保存
+5. `~/.local/share/ecc-homunculus/instincts/inherited/` に保存
 
 ## インポートプロセス
 
@@ -136,7 +136,7 @@ PASS: インポート完了!
 更新: 1件のinstinct
 スキップ: 3件のinstincts (2件の重複, 1件の競合)
 
-新規instinctsの保存先: ~/.claude/homunculus/instincts/inherited/
+新規instinctsの保存先: ~/.local/share/ecc-homunculus/instincts/inherited/
 
 /instinct-statusを実行してすべてのinstinctsを確認できます。
 ```

@@ -38,8 +38,8 @@ Yerel dosya yollarından veya HTTP(S) URL'lerinden içgüdüleri içe aktar.
 3. Mevcut içgüdülerle duplikasyon kontrolü yap
 4. Yeni içgüdüleri birleştir veya ekle
 5. İçgüdüleri inherited dizinine kaydet:
-   - Proje kapsamı: `~/.claude/homunculus/projects/<project-id>/instincts/inherited/`
-   - Global kapsam: `~/.claude/homunculus/instincts/inherited/`
+   - Proje kapsamı: `~/.local/share/ecc-homunculus/projects/<project-id>/instincts/inherited/`
+   - Global kapsam: `~/.local/share/ecc-homunculus/instincts/inherited/`
 
 ## İçe Aktarma İşlemi
 
@@ -108,7 +108,7 @@ Added: 8 instincts
 Updated: 1 instinct
 Skipped: 3 instincts (equal/higher confidence already exists)
 
-New instincts saved to: ~/.claude/homunculus/instincts/inherited/
+New instincts saved to: ~/.local/share/ecc-homunculus/instincts/inherited/
 
 Run /instinct-status to see all instincts.
 ```

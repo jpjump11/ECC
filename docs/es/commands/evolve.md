@@ -85,8 +85,8 @@ Ejemplo:
    - Candidatos a agente (clusters más grandes de alta confianza)
 5. Mostrar candidatos a promoción (proyecto → global) cuando corresponda
 6. Si se pasa `--generate`, escribir archivos en:
-   - Alcance del proyecto: `~/.claude/homunculus/projects/<project-id>/evolved/`
-   - Respaldo global: `~/.claude/homunculus/evolved/`
+   - Alcance del proyecto: `~/.local/share/ecc-homunculus/projects/<project-id>/evolved/`
+   - Respaldo global: `~/.local/share/ecc-homunculus/evolved/`
 
 ## Formato de Salida
 

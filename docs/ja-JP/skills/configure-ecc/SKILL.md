@@ -214,7 +214,7 @@ grep -rn "skills/" $TARGET/skills/
 一部のスキルは他のスキルを参照します。これらの依存関係を検証します：
 - `django-tdd` は `django-patterns` を参照する可能性があります
 - `springboot-tdd` は `springboot-patterns` を参照する可能性があります
-- `continuous-learning-v2` は `~/.claude/homunculus/` ディレクトリを参照します
+- `continuous-learning-v2` は `~/.local/share/ecc-homunculus/` ディレクトリを参照します
 - `python-testing` は `python-patterns` を参照する可能性があります
 - `golang-testing` は `golang-patterns` を参照する可能性があります
 - 言語固有のルールは `common/` の対応物を参照します
@@ -310,4 +310,4 @@ rm -rf /tmp/everything-claude-code
 
 ### "プロジェクトレベルのインストール後のパス参照エラー"
 - 一部のスキルは `~/.claude/` パスを前提としています。ステップ4の検証を実行してこれらを見つけて修正します。
-- `continuous-learning-v2` の場合、`~/.claude/homunculus/` ディレクトリは常にユーザーレベルです — これは想定されており、エラーではありません。
+- `continuous-learning-v2` の場合、`~/.local/share/ecc-homunculus/` ディレクトリは常にユーザーレベルです — これは想定されており、エラーではありません。

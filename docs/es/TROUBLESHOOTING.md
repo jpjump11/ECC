@@ -53,12 +53,12 @@ head -n 50 large-file.txt
 **Soluciones:**
 ```bash
 # Verificar si las observaciones se están registrando
-ls ~/.claude/homunculus/projects/*/observations.jsonl
+ls ~/.local/share/ecc-homunculus/projects/*/observations.jsonl
 
 # Encontrar el hash id del proyecto actual
 python3 - <<'PY'
 import json, os
-registry_path = os.path.expanduser("~/.claude/homunculus/projects.json")
+registry_path = os.path.expanduser("~/.local/share/ecc-homunculus/projects.json")
 with open(registry_path) as f:
     registry = json.load(f)
 for project_id, meta in registry.items():
@@ -66,15 +66,15 @@ for project_id, meta in registry.items():
         print(project_id)
         break
 else:
-    raise SystemExit("Hash del proyecto no encontrado en ~/.claude/homunculus/projects.json")
+    raise SystemExit("Hash del proyecto no encontrado en ~/.local/share/ecc-homunculus/projects.json")
 PY
 
 # Ver observaciones recientes para ese proyecto
-tail -20 ~/.claude/homunculus/projects/<hash-del-proyecto>/observations.jsonl
+tail -20 ~/.local/share/ecc-homunculus/projects/<hash-del-proyecto>/observations.jsonl
 
 # Hacer copia de seguridad de un archivo de observaciones corrupto antes de recrearlo
-mv ~/.claude/homunculus/projects/<hash-del-proyecto>/observations.jsonl \
-  ~/.claude/homunculus/projects/<hash-del-proyecto>/observations.jsonl.bak.$(date +%Y%m%d-%H%M%S)
+mv ~/.local/share/ecc-homunculus/projects/<hash-del-proyecto>/observations.jsonl \
+  ~/.local/share/ecc-homunculus/projects/<hash-del-proyecto>/observations.jsonl.bak.$(date +%Y%m%d-%H%M%S)
 
 # Verificar que los hooks están habilitados
 grep -r "observe" ~/.claude/settings.json
@@ -321,9 +321,9 @@ rm package-lock.json  # Si usas pnpm/yarn/bun
 **Soluciones:**
 ```bash
 # Archivar observaciones grandes en lugar de eliminarlas
-archive_dir="$HOME/.claude/homunculus/archive/$(date +%Y%m%d)"
+archive_dir="$HOME/.local/share/ecc-homunculus/archive/$(date +%Y%m%d)"
 mkdir -p "$archive_dir"
-find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec sh -c '
+find ~/.local/share/ecc-homunculus/projects -name "observations.jsonl" -size +10M -exec sh -c '
   for file do
     base=$(basename "$(dirname "$file")")
     gzip -c "$file" > "'"$archive_dir"'/${base}-observations.jsonl.gz"
@@ -335,7 +335,7 @@ find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec s
 # Edita ~/.claude/settings.json
 
 # Mantener pequeños los archivos de observaciones activos
-# Los archivos de gran tamaño deben estar bajo ~/.claude/homunculus/archive/
+# Los archivos de gran tamaño deben estar bajo ~/.local/share/ecc-homunculus/archive/
 ```
 
 ### Alto Uso de CPU
@@ -353,13 +353,13 @@ find ~/.claude/homunculus/projects -name "observations.jsonl" -size +10M -exec s
 top -o cpu | grep claude
 
 # Deshabilitar el aprendizaje continuo temporalmente
-touch ~/.claude/homunculus/disabled
+touch ~/.local/share/ecc-homunculus/disabled
 
 # Reiniciar Claude Code
 # Cmd/Ctrl+Q luego volver a abrir
 
 # Verificar el tamaño del archivo de observaciones
-du -sh ~/.claude/homunculus/*/
+du -sh ~/.local/share/ecc-homunculus/*/
 ```
 
 ---
@@ -373,7 +373,7 @@ du -sh ~/.claude/homunculus/*/
 find ~/.claude/plugins -name "*.sh" -exec chmod +x {} \;
 
 # Corregir permisos del directorio de observaciones
-chmod -R u+rwX,go+rX ~/.claude/homunculus
+chmod -R u+rwX,go+rX ~/.local/share/ecc-homunculus
 ```
 
 ### "MODULE_NOT_FOUND"
